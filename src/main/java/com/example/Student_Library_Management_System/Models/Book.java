@@ -4,6 +4,9 @@ import com.example.Student_Library_Management_System.Enums.Genre;
 import jakarta.persistence.*;
 import org.hibernate.query.sql.internal.ParameterRecognizerImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="book")
 public class Book {
@@ -25,6 +28,9 @@ public class Book {
     @ManyToOne
     @JoinColumn
     private Card card;
+
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    private List<Transactions> transactionsList = new ArrayList<>();
     private boolean issued;
     public Book() {
     }
@@ -83,5 +89,13 @@ public class Book {
 
     public void setIssued(boolean issued) {
         this.issued = issued;
+    }
+
+    public List<Transactions> getTransactionsList() {
+        return transactionsList;
+    }
+
+    public void setTransactions(List<Transactions> transactionsList) {
+        this.transactionsList = transactionsList;
     }
 }
