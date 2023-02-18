@@ -2,6 +2,7 @@ package com.example.Student_Library_Management_System.Models;
 
 import com.example.Student_Library_Management_System.Enums.TransactionStatus;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.UUID;
@@ -18,6 +19,7 @@ public class Transactions {
 
     private int fine;
     private String transactionId = UUID.randomUUID().toString();
+    @CreationTimestamp
     private Date transactionDate;
     private boolean isIssueOperation;
 
